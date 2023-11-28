@@ -81,13 +81,12 @@ def process(image_path, dst):
 
 
 def single_run(
-    image_src="DATA/test",
+    image_path="DATA/test/2645.jpg",
     dst_path="single_run",
 ):
     dst = Path(dst_path)
-    src = Path(image_src)
-    image_path = src / "2645.jpg"
-    process(image_path, dst)
+    image_src = Path(image_path)
+    process(image_src, dst)
 
 
 def test_run(
@@ -113,7 +112,7 @@ if __name__ == "__main__":
     import eval_yolo
     import eval_cv
 
-    # single_run()
-    test_run()
+    single_run()
+    # test_run()
 else:
     from . import eval_siamese, eval_yolo, eval_cv
