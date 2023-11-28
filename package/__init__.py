@@ -2,6 +2,7 @@ import io
 from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+from pathlib import Path
 
 
 def crop_xyxy(img, pt):
@@ -72,7 +73,8 @@ def process(image_path, dst):
         image_name=image_path.name,
         yaml_true_path="DATA/valid_points.yaml",
     )
-    print(f"THE ANSWER IS: {answer}")
+    print(f"\nmatrix_ids: {matrix_ids}")
+    print(f"frame_number: {frame_number}\n")
     d = dst / str(answer)
     d.mkdir(parents=True, exist_ok=True)
     fig.savefig(f"{d}/{image_path.stem}_{matrix_ids}_{frame_number}.jpg")
@@ -80,7 +82,7 @@ def process(image_path, dst):
 
 def single_run(
     image_src="DATA/test",
-    dst_path="res",
+    dst_path="single_run",
 ):
     dst = Path(dst_path)
     src = Path(image_src)
@@ -88,31 +90,30 @@ def single_run(
     process(image_path, dst)
 
 
-def glob_run(
+def test_run(
     image_src="DATA/test",
-    dst_path="res",
+    dst_path="test_run",
 ):
     dst = Path(dst_path)
     src = Path(image_src)
     for num, image_path in enumerate(src.glob("*.jpg")):
-        print(f"image_path: {image_path}")
         print(f"#: [{num}/100]")
+        print(f"#: {image_path}")
         try:
             process(image_path, dst)
         except Exception:
             pass
     t = dst / "True"
     q = len(list(t.glob("*.jpg")))
-    print(f"Quality: {q}%")
+    print(f"\n\nQuality: {q}%\n\n")
 
 
 if __name__ == "__main__":
-    from pathlib import Path
     import eval_siamese
     import eval_yolo
     import eval_cv
 
     # single_run()
-    glob_run()
+    test_run()
 else:
     from . import eval_siamese, eval_yolo, eval_cv

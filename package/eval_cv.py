@@ -103,8 +103,4 @@ def run(box_left, box_top, trains, ax):
 
 
 if __name__ == "__main__":
-    # draw_box_centroid()
-    # centroid_intersection()
-    # run()
-    # draw_match()
-    print("##DONE")
+    pass

@@ -1,4 +1,3 @@
-import matplotlib
 from ultralytics import YOLO
 
 
@@ -71,9 +70,4 @@ def run(model_path, image_path):
 
 
 if __name__ == "__main__":
-    matplotlib.use("tkagg")
-    run(
-        model_path="./MODELS/best.pt",
-        image_path="../DATA/yolo_short/images/test/2645.jpg",
-    )
-    print("##DONE")
+    pass
