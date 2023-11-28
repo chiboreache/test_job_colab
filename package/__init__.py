@@ -73,8 +73,8 @@ def process(image_path, dst):
         image_name=image_path.name,
         yaml_true_path="DATA/valid_points.yaml",
     )
-    print(f"\nmatrix_ids: {matrix_ids}")
-    print(f"frame_number: {frame_number}\n")
+    print(f"\nmatrix: {matrix_ids}")
+    print(f"frame: {frame_number}\n")
     d = dst / str(answer)
     d.mkdir(parents=True, exist_ok=True)
     fig.savefig(f"{d}/{image_path.stem}_{matrix_ids}_{frame_number}.jpg")
